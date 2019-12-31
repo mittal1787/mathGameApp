@@ -1,0 +1,532 @@
+WindowManager:
+    id: windowManager
+    OpenScreen:
+    QuestionScreenOne:
+    QuestionScreenTwo:
+    QuestionScreenThree:
+    QuestionScreenFour:
+    QuestionScreenFive:
+    QuestionScreenSix:
+    QuestionScreenSeven:
+    QuestionScreenEight:
+    QuestionScreenNine:
+    QuestionScreenTen:
+    EndScreen:
+
+
+<OpenScreen>:
+    name: "Open"
+    id: open
+
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 2
+            Label:
+                text: "Welcome! Please put the number of groups playing in the text input(If you type in a negative number, it is automatically one group)"
+
+            TextInput:
+                id: group_count
+                input_filter: "int"
+                multiline: False
+
+        Button:
+            id: proceed
+            text: "proceed"
+            on_press:
+                for i in range(int(group_count.text)-1): root.manager.group_dict["A" + str(i+1)] = 0
+                print(root.manager.group_dict)
+            on_release:
+                app.root.current = "Q1"
+
+<QuestionScreenOne>:
+    name: "Q1"
+    id: q1
+
+    GridLayout:
+        id: "QuestionGrid"
+        cols: 1
+        Label:
+            text: "What is two times the sum of a number and five?(50 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+
+
+        Button:
+            id: "answer_1"
+            text: "2(x+5)"
+            on_release:
+                app.root.current = "Q2"
+                print(root.manager.group_dict)
+            on_press:
+                root.manager.group_dict[group_spin.text] += 50
+                print(root.manager.group_dict[group_spin.text])
+
+
+        Button:
+            id: "answer_2"
+            text: "4x"
+            on_release:
+                app.root.current = "Q2"
+                print(root.manager.group_dict)
+            on_press:
+                root.manager.group_dict[group_spin.text] -= 50
+                print(root.manager.group_dict[group_spin.text])
+
+        Button:
+            id: "answer_3"
+            text: "2x+5"
+            on_release:
+                app.root.current = "Q2"
+                print(root.manager.group_dict)
+            on_press:
+                root.manager.group_dict[group_spin.text] -= 50
+                print(root.manager.group_dict[group_spin.text])
+
+        Button:
+            id: "answer_4"
+            text: "x+5"
+            on_release: app.root.current = "Q2"
+            on_press:
+                root.manager.group_dict[group_spin.text] -= 50
+                print(root.manager.group_dict[group_spin.text])
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<QuestionScreenTwo>:
+    name: "Q2"
+    id: q2
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "What is the solution to x^2 + 2x + 1?(100 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+        Button:
+            id: answer_1
+            text: "1"
+            on_release: app.root.current = "Q3"
+            on_press:
+                root.manager.group_dict[group_spin.text] -= 100
+
+        Button:
+            id: answer_2
+            text: "-1"
+            on_release: app.root.current = "Q3"
+            on_press: root.manager.group_dict[group_spin.text] += 100
+
+        Button:
+            id: "answer_3"
+            text: "1, -1"
+            on_release: app.root.current = "Q3"
+            on_press: root.manager.group_dict[group_spin.text] -= 100
+
+        Button:
+            id: "answer_4"
+            text: "None"
+            on_release: app.root.current = "Q3"
+            on_press: root.manager.group_dict[group_spin.text] -= 100
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<QuestionScreenThree>:
+    name: "Q3"
+    id: q3
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "What is the solution to 2x + 3y = 5 and x + 2y = 3(150 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+        Button:
+            id: "answer_1"
+            text: "(-1,-1)"
+            on_release: app.root.current = "Q4"
+            on_press: root.manager.group_dict[group_spin.text] -= 150
+
+        Button:
+            id: "answer_2"
+            text: "(1,1)"
+            on_release: app.root.current = "Q4"
+            on_press: root.manager.group_dict[group_spin.text] += 150
+
+        Button:
+            id: "answer_3"
+            text: "Infinite"
+            on_release: app.root.current = "Q4"
+            on_press: root.manager.group_dict[group_spin.text] -= 150
+
+        Button:
+            id: "answer_4"
+            text: "None"
+            on_release: app.root.current = "Q4"
+            on_press: root.manager.group_dict[group_spin.text] -= 150
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<QuestionScreenFour>:
+    name: "Q4"
+    id: q4
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "What is the solution to 3x + 6y = 9 and 5x + 10y = 10 (200 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+        Button:
+            id: "answer_1"
+            text: "11, 1"
+            on_press: root.manager.group_dict[group_spin.text] -= 200
+            on_release: app.root.current = "Q5"
+
+        Button:
+            id: "answer_2"
+            text: "1,1"
+            on_press: root.manager.group_dict[group_spin.text] -= 200
+            on_release: app.root.current = "Q5"
+
+        Button:
+            id: "answer_3"
+            text: "Infinite"
+            on_press: root.manager.group_dict[group_spin.text] -= 200
+            on_release: app.root.current = "Q5"
+
+        Button:
+            id: "answer_4"
+            text: "None"
+            on_press: root.manager.group_dict[group_spin.text] += 200
+            on_release: app.root.current = "Q5"
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<QuestionScreenFive>:
+    name: "Q5"
+    id: q5
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "What is the solution to x^3 + 3x^2 + 6x + 1?(250 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+        Button:
+            id: "answer_1"
+            text: "0.3"
+            on_press: root.manager.group_dict[group_spin.text] -= 250
+            on_release: app.root.current = "Q6"
+
+        Button:
+            id: "answer_2"
+            text: "0.182"
+            on_press: root.manager.group_dict[group_spin.text] -= 250
+            on_release: app.root.current = "Q6"
+
+        Button:
+            id: "answer_3"
+            text: "-0.182"
+            on_press: root.manager.group_dict[group_spin.text] += 250
+            on_release: app.root.current = "Q6"
+
+        Button:
+            id: "answer_4"
+            text: "None"
+            on_press: root.manager.group_dict[group_spin.text] -= 250
+            on_release: app.root.current = "Q6"
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<QuestionScreenSix>:
+    name: "Q6"
+    id: q6
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "what is not correct?(300 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+        Button:
+            id: "answer_1"
+            text: "Cos(30 degrees) = sqrt(3)/2"
+            on_press: root.manager.group_dict[group_spin.text] -= 300
+            on_release: app.root.current = "Q7"
+
+        Button:
+            id: "answer_2"
+            text: "cos(60) = 1/2"
+            on_press: root.manager.group_dict[group_spin.text] += 300
+            on_release: app.root.current = "Q7"
+
+        Button:
+            id: "answer_3"
+            text: "cos(pi/2) = 0"
+            on_press: root.manager.group_dict[group_spin.text] -= 300
+            on_release: app.root.current = "Q7"
+
+        Button:
+            id: "answer_4"
+            text: "sin(180 degrees) = sin(0)"
+            on_press: root.manager.group_dict[group_spin.text] -= 300
+            on_release: app.root.current = "Q7"
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<QuestionScreenSeven>:
+    name: "Q7"
+    id: q7
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "What is NOT a valid trig identity?(350 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+        Button:
+            id: "answer_1"
+            text: "Sin(x) = Cos(x)"
+            on_press: root.manager.group_dict[group_spin.text] += 350
+            on_release: app.root.current = "Q8"
+
+        Button:
+            id: "answer_2"
+            text: "Sin(2x) = 2sin(x)cos(x)"
+            on_press: root.manager.group_dict[group_spin.text] -= 350
+            on_release: app.root.current = "Q8"
+
+        Button:
+            id: "answer_3"
+            text: "sin(x) = cos(pi/2 - x)"
+            on_press: root.manager.group_dict[group_spin.text] -= 350
+            on_release: app.root.current = "Q8"
+
+        Button:
+            id: "answer_4"
+            text: "sin^2(x) + cos^2(x) = 1"
+            on_press: root.manager.group_dict[group_spin.text] -= 350
+            on_release: app.root.current = "Q8"
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<QuestionScreenEight>:
+    name: "Q8"
+    id: q8
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "What is the derivative of x^2 + 2x + 1 (400 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+        Button:
+            id: "answer_1"
+            text: "x^3/3 + x^2 + x"
+            on_press: root.manager.group_dict[group_spin.text] -= 400
+            on_release: app.root.current = "Q9"
+
+        Button:
+            id: "answer_2"
+            text: "DNE"
+            on_press: root.manager.group_dict[group_spin.text] -= 400
+            on_release: app.root.current = "Q9"
+
+        Button:
+            id: "answer_3"
+            text: "x+1"
+            on_press: root.manager.group_dict[group_spin.text] -= 400
+            on_release: app.root.current = "Q9"
+
+        Button:
+            id: "answer_4"
+            text: "2x+2"
+            on_press: root.manager.group_dict[group_spin.text] += 400
+            on_release: app.root.current = "Q9"
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<QuestionScreenNine>:
+    name: "Q9"
+    id: q9
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "What is the indefinite integral of x^2 + 2x + 1?(450 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+        Button:
+            id: "answer_1"
+            text: "x^3 + 2x^2 + x"
+            on_press: root.manager.group_dict[group_spin.text] -= 450
+            on_release: app.root.current = "Q10"
+
+        Button:
+            id: "answer_2"
+            text: "x^3/3 + x^2 + x"
+            on_press: root.manager.group_dict[group_spin.text] -= 450
+            on_release: app.root.current = "Q10"
+
+        Button:
+            id: "answer_3"
+            text: "Neither of these"
+            on_press: root.manager.group_dict[group_spin.text] -= 450
+            on_release: app.root.current = "Q10"
+
+        Button:
+            id: "answer_4"
+            text: "x^3/3 + x^2 + x + C"
+            on_press: root.manager.group_dict[group_spin.text] += 450
+            on_release: app.root.current = "Q10"
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<QuestionScreenTen>:
+    name: "Q10"
+    id: q10
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "What is the integral of 4*sec^2(x)*tan^4(x)?(500 pts)"
+
+        Label:
+            text: "Pick your group:"
+
+        Spinner:
+            id: group_spin
+            size: 100, 44
+            pos_hint: {'center': (.5, .5)}
+            text: "A0"
+            values: root.manager.group_dict
+
+        Button:
+            id: "answer_1"
+            text: "tan(x) + C"
+            on_press: root.manager.group_dict[group_spin.text] -= 500
+            on_release: app.root.current = "End"
+
+        Button:
+            id: "answer_2"
+            text: "4*tan^5(x) + C"
+            on_press: root.manager.group_dict[group_spin.text] -= 500
+            on_release: app.root.current = "End"
+
+        Button:
+            id: "answer_3"
+            text: "4/5 * tan^5(x) + C"
+            on_press: root.manager.group_dict[group_spin.text] += 500
+            on_release: app.root.current = "End"
+
+        Button:
+            id: "answer_4"
+            text: "4/5 * sec^5(x) + C"
+            on_press: root.manager.group_dict[group_spin.text] -= 500
+            on_release: app.root.current = "End"
+
+        Label:
+            text: "Scores: " + str(root.manager.group_dict)
+
+<EndScreen>:
+    name: "End"
+
+    GridLayout:
+        id: layout_screen
+        cols: 1
+        Label:
+            text: "Congrats! here are the results"
+
+        Label:
+            text: str(root.manager.group_dict)
+
