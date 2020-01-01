@@ -532,3 +532,9 @@ WindowManager:
         Label:
             text: str(root.manager.group_dict)
 
+        Button:
+            text: "Retry game"
+            on_release:
+                root.manager.group_dict = {"A0": 0}
+                app.root.current = "Open"
+
