@@ -6,7 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.textinput import TextInput
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.spinner import Spinner
-from kivy.properties import DictProperty
+from kivy.properties import DictProperty, ObjectProperty
 from kivy.lang import Builder
 
 class WindowManager(ScreenManager):

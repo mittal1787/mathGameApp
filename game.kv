@@ -23,17 +23,19 @@ WindowManager:
         GridLayout:
             cols: 2
             Label:
-                text: "Welcome! Please put the number of groups playing in the text input(If you type in a negative number, it is automatically one group)"
+                text: "Welcome! Please put the number of groups playing in the text input\n(If you type in a number less than or equal to 0 or if you type nothing, it is automatically one group)"
 
             TextInput:
                 id: group_count
                 input_filter: "int"
                 multiline: False
+                text: "0"
 
         Button:
             id: proceed
             text: "proceed"
             on_press:
+                if group_count.text == "": group_count.text = "0"
                 for i in range(int(group_count.text)-1): root.manager.group_dict["A" + str(i+1)] = 0
                 print(root.manager.group_dict)
             on_release:
